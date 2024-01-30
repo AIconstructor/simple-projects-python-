@@ -1,0 +1,43 @@
+#Project 2
+#Enter how many days have there been since beginning of the year and get the number of month and the number of day in that month
+
+day = int(input("enter day of year : "))
+
+if day < 1 or day > 366:
+    print(":( day is not in range[1, 366]")
+
+elif day in range(1, 31+1):
+    print("Month = 1", "day = ", day)
+
+elif day in range(32, 62+1):
+    print("Month = 2", "day = ", day-31)
+
+elif day in range(63, 93+1):
+    print("Month = 3", "day = ", day-62)
+
+elif day in range(94, 124+1):
+    print("Month = 4", "day = ", day-93)
+
+elif day in range(125, 155+1):
+    print("Month = 5", "day = ", day-124)
+
+elif day in range(156, 186+1):
+    print("Month = 6", "day = ", day-155)
+
+elif day in range(187, 216+1):
+    print("Month = 7", "day = ", day-186)
+
+elif day in range(217, 246+1):
+    print("Month = 8", "day = ", day-216)
+
+elif day in range(247, 276+1):
+    print("Month = 9", "day = ", day-246)
+
+elif day in range(277, 306+1):
+    print("Month = 10", "day = ", day-276)
+
+elif day in range(307, 336+1):
+    print("Month = 11", "day = ", day-306)
+
+else:
+    print("Month = 12", "day = ", day-336)
