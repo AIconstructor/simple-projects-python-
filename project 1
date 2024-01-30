@@ -1,0 +1,49 @@
+# Project 1
+# Enter month number and day number and get how many days have passed since beginning of the year
+
+month = int(input("enter month number : "))
+
+if (month < 1 or month > 12):
+    print("O_o? ERROR , month not in range [1, 12]")
+
+else:
+    day = int(input("enter day number : "))
+
+    if (day < 1 or day > 31) or (month in range(7, 13) and day > 30):
+        print("o_O? ERROR , day not in range [1, 30]")
+
+    elif month == 1:
+        print("days past = ", day)
+
+    elif month == 2:
+        print("days past = ", 31+day)
+
+    elif month == 3:
+        print("days past = ", 62+day)
+
+    elif month == 4:
+        print("days past = ", 93+day)
+
+    elif month == 5:
+        print("days past = ", 124+day)
+
+    elif month == 6:
+        print("days past = ", 155+day)
+
+    elif month == 7:
+        print("days past = ", 186+day)
+
+    elif month == 8:
+        print("days past = ", 216+day)
+
+    elif month == 9:
+        print("days past = ", 246+day)
+
+    elif month == 10:
+        print("days past = ", 276+day)
+
+    elif month == 11:
+        print("days past = ", 306+day)
+
+    else:
+        print("days past = ", 336+day)
