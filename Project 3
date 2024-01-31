@@ -1,0 +1,167 @@
+#Project 3
+#This is a game which you should guess the number that pc has generated
+
+from random import randint
+from os import system
+
+flag = True
+num_user = 0
+rounds_played = 0
+
+
+# region password
+while flag:
+
+    password = input("enter password : ")
+    system("cls")
+
+    if password != "1234":
+        print("==> wrong password")
+    else:
+        break
+# endregion
+
+while flag:
+
+# region get level
+    times_played = 0
+
+    while flag:
+
+        level = input("enter level : ")
+        system("cls")
+
+        if level not in ["4", "5", "6", "7"]:
+            print("O_O , wrong level")   
+        else:
+            break
+# endregion
+    
+    match level:
+       
+        # region level 4
+        case "4":
+            num_pc = randint(1000, 9999)
+            num_list_smaller=[1000]
+            num_list_bigger=[9999]
+
+            while num_user != num_pc:
+
+                #region list
+                max_ = max(num_list_smaller)
+                min_ = min(num_list_bigger)
+                num_list_smaller.clear()
+                num_list_bigger.clear()
+                num_list_smaller.append(max_)
+                num_list_bigger.append(min_)
+                print(num_list_smaller, " ^_^ ", end=" ")
+                print(num_list_bigger)
+                #endregion
+
+                num_user = int(input("please enter your guess : "))
+
+                if num_pc > num_user:
+                    system("cls")
+                    num_list_smaller.append(num_user)
+                    print("pc number is higher than",num_user)
+                    times_played += 1
+
+
+                elif num_pc < num_user:
+                    system("cls")
+                    num_list_bigger.append(num_user)
+                    print("pc number is lower than ",num_user)
+                    times_played += 1
+
+                else:
+                    system("cls")
+                    print("pc number was ", num_pc)
+                    times_played += 1
+                    print("times you played : ", times_played)
+                    rounds_played+=1
+        # endregion
+
+        # region level 5
+        case "5":
+            num_pc = randint(10000, 99999)
+
+            while num_user != num_pc:
+                num_user = int(input("please enter your guess : "))
+
+                if num_pc > num_user:
+                    system("cls")
+                    print("number is higher than what you entered")
+                    times_played += 1
+
+                elif num_pc < num_user:
+                    system("cls")
+                    print("number is lower than what you entered")
+                    times_played += 1
+
+                else:
+                    system("cls")
+                    print("number was ", num_pc)
+                    times_played += 1
+                    print("times you played : ", times_played)
+                    rounds_played+=1
+        # endregion
+
+        # region level 6
+        case "6":
+            num_pc = randint(100000, 999999)
+
+            while num_user != num_pc:
+                num_user = int(input("please enter your guess : "))
+
+                if num_pc > num_user:
+                    system("cls")
+                    print("number is higher than what you entered")
+                    times_played += 1
+
+                elif num_pc < num_user:
+                    system("cls")
+                    print("number is lower than what you entered")
+                    times_played += 1
+
+                else:
+                    system("cls")
+                    print("number was ", num_pc)
+                    times_played += 1
+                    print("times you played : ", times_played)
+                    rounds_played+=1
+        # endregion
+
+        # region level 7
+        case"7":
+            num_pc = randint(1000000, 9999999)
+
+            while num_user != num_pc:
+                num_user = int(input("please enter your guess : "))
+
+                if num_pc > num_user:
+                    system("cls")
+                    print("number is higher than what you entered")
+                    times_played += 1
+
+                elif num_pc < num_user:
+                    system("cls")
+                    print("number is lower than what you entered")
+                    times_played += 1
+
+                else:
+                    system("cls")
+                    print("number was ", num_pc)
+                    times_played += 1
+                    print("times you played : ", times_played)
+                    rounds_played+=1
+        # endregion
+
+    if input("Do you want to continue? ") != "yes":
+        print("rounds you played : ", rounds_played)
+        break
+    else:
+        system("cls")
+        num_list=[]
+        continue    
+
+print(" :-) ")
