@@ -362,6 +362,7 @@ while continue_ :
                 ncode = input("national code : ")
                 system("cls")
 
+
                 print("ID\tname\tfamily\tgender\tage\tncode\tstudcode\tclass\tpython\tphp\tjava")
                 print("-----------------------------------------------------------------------------------------------------------")
                 
@@ -374,6 +375,8 @@ while continue_ :
                         print("-----------------------------------------------------------------------------------------------------------")
                        
                         find_ncod = ncode
+                    else:
+                        break
                
                     #region edit name
                         
@@ -693,6 +696,8 @@ while continue_ :
                         print("-----------------------------------------------------------------------------------------------------------")
                        
                         find_stdcod = stdcode
+                    else:
+                        break
                
                     #region edit name
                         
