@@ -1,0 +1,1211 @@
+from os import system
+from random import randint
+
+continue_ = True
+student_list = []
+
+while continue_ :
+    
+    #region get menu
+    flag = True
+
+    while flag:
+
+        print("\n---------------------")
+        print("1. Add student")
+        print("2. Show student")
+        print("3. Remove student")
+        print("4. Edit student")
+        print("5. Search student")
+        print("6. best java")
+        print("7. best python")
+        print("8. best php")
+        print("9. best avg")
+        print("10. Exit")
+        print("---------------------")
+
+        menu = input("\nmenu : ")
+        system("cls")
+        
+        if menu in ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]:
+            flag = False
+        else:
+            print("error")
+    #endregion
+    
+    if menu=="1":
+
+        temp = True
+
+        while temp:
+            system("cls")
+
+            #region get name
+
+            flag = True
+
+            while flag:
+                name = input("please enter name : ")
+                system("cls")
+
+                if name =="":
+                    print("error! name is empty")
+                else:
+                    flag = False
+
+            #endregion
+
+            #region get family
+            flag = True
+
+            while flag:
+                family = input("please enter family : ")
+                system("cls")
+
+                if family =="":
+                    print("error! family is empty")
+                else:
+                    flag = False
+            #endregion
+                    
+            #region get gender
+            flag = True
+
+            while flag:
+                gender = input("please enter gender : ")
+                system("cls")
+
+                if gender not in ["male", "female", "other"] :
+                    print("error! gender not in male, female, other")
+                else:
+                    flag = False
+            #endregion
+
+            #region get age
+            flag = True
+
+            while flag:
+                age = int(input("please enter age : "))
+                system("cls")
+
+                if age not in range(5, 121):
+                    print("error! age is not in range[5, 120]")
+                else:
+                    flag = False
+            #endregion
+
+            #region get ncode
+            flag = True
+
+            while flag:
+                ncode = input("please enter ncode : ")
+                system("cls")
+
+                if ncode =="":
+                    print("error! ncode is empty")
+                else:
+
+                    find_student=False
+
+                    for student in student_list:
+                        if student[4]==ncode:
+                            find_student=True
+                    
+                    if find_student:
+                        print("Error!!!", ncode, "exists")
+
+                    else:
+                        flag = False
+            #endregion     
+
+            #region get stdcode
+            flag = True
+
+            while flag:
+                stdcode = input("please enter stdcode : ")
+                system("cls")
+
+                if stdcode =="":
+                    print("error! stdcode is empty")
+                else:
+
+                    find_student=False
+
+                    for student in student_list:
+                        if student[5]==stdcode:
+                            find_student=True
+                    
+                    if find_student:
+                        print("Error!!!", stdcode, "exists")
+
+                    else:
+                        flag = False
+            #endregion     
+            
+            #region get class
+            flag = True
+
+            while flag:
+                class_ = input("please enter class_ : ")
+                system("cls")
+
+                if class_ not in ["a", "b", "c", "d"]:
+                    print("error! class is not in [a, b, c, d]")
+                else:
+                    flag = False
+            #endregion
+                    
+            #region get python score
+            flag = True
+
+            while flag:
+                python = float(input("please enter python score : "))
+                system("cls")
+
+                if ((python > 100) or (python < 0)):
+                    print("error! python score is not in range[1,100]")
+                else:
+                    flag = False
+            #endregion
+                    
+            #region get php score
+            flag = True
+
+            while flag:
+                php = float(input("please enter php score : "))
+                system("cls")
+
+                if ((php>100) or (php<0)):
+                    print("error! php score is not in range[1,100]")
+                else:
+                    flag = False
+            #endregion
+            
+            #region get java score
+            flag = True
+
+            while flag:
+                java = float(input("please enter java score : "))
+                system("cls")
+
+                if ((java>100) or (java<0)):
+                    print("error! java score is not in range[1,100]")
+                else:
+                    flag = False
+            #endregion
+                    
+
+
+            student = [name, family, gender, age, ncode, stdcode, class_, java, python, php]
+            student_list.append(student)
+
+            if input("Do you want to add another contact (yes-etc) : ")!="yes":
+                system("cls")
+                temp = False
+
+    elif menu=="2":
+
+        #region make student list
+        if input("do you want to display all columns (yes-etc) : ")=="yes":
+            system("cls")
+            display_column = ["ID", "Name", "Family", "Gender", "Age", "Ncode", "Stdcode", "Class", "Java", "Python", "Php"]
+            display_index = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+        else:
+            system("cls")
+            column=["Name", "Family", "Gender", "Age", "Ncode", "Stdcode", "Class", "Java", "Python", "Php"]
+            display_column=["ID"]
+            display_index=[]
+
+
+            for index in range(len(column)):
+
+                print("Do you want to display ",column[index], "(yes-etc) : ", end="")
+
+                if input()=="yes":
+                    display_column.append(column[index])
+                    display_index.append(index)
+                
+                system("cls")
+        #endregion
+
+        #region show student list
+        
+        print(*display_column, sep="\t")
+        print("--------------------------------------------------------------------------------------------")
+        
+        count = 1
+        for student in student_list:
+            print(count, end="\t")
+
+            for index in display_index:
+                print(student[index], end="\t")
+
+            print()
+            count += 1
+
+        print("\n--------------------------------------------------------------------------------------------")
+        #endregion
+
+    elif menu=="3":
+
+        tmp = True
+        while tmp:
+            answer_ = input("Do you want to delete by std code or ncode? 1.std code 2.ncode 3.exit : ")
+
+            if answer_ not in ["1", "2", "3"]:
+                print("error")
+            else:
+                tmp = False
+
+        temp = True
+
+        while temp:
+            system("cls")
+
+            print("ID\tName\tFamily\tGender\tAge\tNcode\tStdcode\tClass\tPython\tPhp\tJava")
+            print("_________________________________________________________________________________________________________")
+            count = 1
+            for student in student_list:
+                print(count, *student, sep="\t")
+                count += 1
+            print("_________________________________________________________________________________________________________")
+
+
+
+            if answer_ == "1":
+                #region delete by stdcode
+                stdcode = input("\n\nstdcode : ")
+                system("cls")
+
+                find_student= None
+
+                for student in student_list:
+                    if student[5]==stdcode:
+                        find_student=student
+
+                if find_student==None:
+                    print("error!!!", stdcode, "does not exists!!!")
+                else:
+                    print("Full name : ", find_student[0], find_student[1], "stdcode : ", find_student[5] )
+                    if input("Do you want to delete this student(yes-etc) : ")=="yes":
+                        student_list.remove(find_student)
+                        
+                    system("cls")
+                    print("Done")
+
+            elif answer_ == "2":
+                #region delete by ncode
+                stdcode = input("\n\nncode : ")
+                system("cls")
+
+                find_student= None
+
+                for student in student_list:
+                    if student[4]==ncode:
+                        find_student=student
+
+                if find_student==None:
+                    print("error!!!", ncode, "does not exists!!!")
+                else:
+                    print("Full name : ", find_student[0], find_student[1], "stdcode : ", find_student[4] )
+                    if input("Do you want to delete this student(yes-etc) : ")=="yes":
+                        student_list.remove(find_student)
+                        
+                    system("cls")
+                    print("Done")
+            
+            elif answer_ == "3":
+                temp = False
+                system("cls")
+                break
+
+
+            if input("Do you want to delete another contact (yes-etc) : ")!="yes":
+                system("cls")
+                temp = False
+
+            
+            #endregion
+    
+    elif menu == "4":
+        
+        #region edit info
+
+        temp = True
+
+        while temp:
+          
+            selection = input("\n\n for edit enter num 1.national code 2.student code 3.exit : ")
+            system("cls")
+
+            display_column = ["ID", "name", "family", "gender", "age", "ncode", "stdcode", "class", "python", "php", "java"]
+            display_index = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+            print(*display_column, sep="\t")
+            print("=====================================================================================================================================")
+
+            count = 1
+            for student in student_list: 
+                print(count, end="\t")
+
+                for index in display_index: 
+                    print(student[index], end="\t")
+                
+                print()
+                count += 1
+
+            print("\n-----------------------------------------------------------------------------------------------------------------------------------")
+
+            if selection == "1":
+
+                ncode = input("national code : ")
+                system("cls")
+
+                print("ID\tname\tfamily\tgender\tage\tncode\tstudcode\tclass\tpython\tphp\tjava")
+                print("-----------------------------------------------------------------------------------------------------------")
+                
+                find_ncod = None
+                count = 1
+                for student in student_list: 
+                    if student[4] == ncode:
+                        print(count, *student, sep="\t")
+                        count += 1
+                        print("-----------------------------------------------------------------------------------------------------------")
+                       
+                        find_ncod = ncode
+               
+                    #region edit name
+                        
+                    flag = True
+
+                    while flag:
+
+                        if input("do you want to edit this name (yes-etc) : ")=="yes":
+                            system("cls")
+
+                            new_name = input("New name : ")
+                            system("cls")
+
+                            if new_name=="":
+                                print("Error! new name is empty!!!")
+                            else:
+                                flag = False
+
+                                print("done")
+                                student[0] = new_name
+                        else:
+                            break
+                    
+                    #endregion
+                        
+                    #region edit family
+                        
+                    flag = True
+
+                    while flag:
+
+                        if input("do you want to edit this family (yes-etc) : ")=="yes":
+                            system("cls")
+                            
+                            new_family = input("New family : ")
+                            system("cls")
+
+                            if new_family=="":
+                                print("Error! new family is empty!!!")
+                            else:
+                                flag = False
+
+                                print("done")
+                                student[1] = new_family
+                        else:
+                            system("cls")
+                            print("done")
+                            break                       
+
+                    #endregion
+                        
+                    #region edit gender
+                        
+                    flag = True
+
+                    while flag:
+
+                        if input("do you want to edit this gender (yes-etc) : ")=="yes":
+                            system("cls")
+                                                        
+                            new_gender = input("New gender : ")
+                            system("cls")
+
+                            if new_gender=="":
+                                print("Error! new gender is empty!!!")
+                            elif new_gender not in ["male", "female", "other"]:
+                                print("Error! new gender is not chosen from male, female, other!!!")
+                            else:
+                                flag = False
+
+                                print("done")
+                                student[2] = new_gender
+                        else:
+                            system("cls")
+                            print("done")
+                            break   
+
+                    #endregion
+                        
+                    #region edit age
+                        
+                    flag = True
+
+                    while flag:
+
+                        if input("do you want to edit this age (yes-etc) : ")=="yes":
+                            system("cls")
+                            
+                            new_age = int(input("New age : "))
+                            system("cls")
+
+                            if new_age=="":
+                                print("Error! new age is empty!!!")
+                            elif new_age>120 or new_age<5:
+                                print("Error! new age is bigger than 120 and smaller than 5!!!")
+
+                            else:
+                                flag = False
+
+                                print("done")
+                                student[3] = new_age
+                        else:
+                            system("cls")
+                            print("done")
+                            break   
+                    #endregion
+
+                    #region edit national code
+                        
+                    flag = True
+
+                    while flag:
+
+                        if input("do you want to edit this national code (yes-etc) : ")=="yes":
+                            system("cls")
+                            
+                            new_ncode = input("New national code : ")
+                            system("cls")
+
+                            if new_ncode=="":
+                                print("Error! new national code is empty!!!")
+                            
+                            elif new_ncode==student[4]:
+                                flag=False
+                                print("already exists")
+                            else:
+                                find_student = False
+
+                                for std in student_list:
+                                    if std[4]==new_ncode:
+                                        find_student=True
+                                        
+
+                                if find_student:
+                                    print("error!!!", new_ncode, "exists")
+                                else:
+                                    flag = False
+
+                                    print("done")
+                                    student[4] = new_ncode
+                        else:
+                            system("cls")
+                            print("done")
+                            break     
+
+                    #endregion
+                        
+                    #region edit student code
+                        
+                    flag = True
+
+                    while flag:
+
+                        if input("do you want to edit this stdcode (yes-etc) : ")=="yes":
+                            system("cls")
+                            
+                            new_stdcode = input("New student code : ")
+                            system("cls")
+
+                            if new_stdcode=="":
+                                print("Error! new student code is empty!!!")
+                            
+                            elif new_stdcode==stdcode:
+                                flag=False
+                                print("already exists")
+                            else:
+                                find_student = False
+
+                                for std in student_list:
+                                    if std[5]==new_stdcode:
+                                        find_student=True
+
+                                if find_student:
+                                    print("error!!!", new_stdcode, "exists")
+                                else:
+                                    flag = False
+                        else:
+                            system("cls")
+                            print("done")
+                            break  
+
+                        print("done")
+                        student[5] = new_stdcode
+
+                    #endregion
+
+                    #region edit class
+                        
+                    flag = True
+
+                    while flag:
+
+                        if input("do you want to edit this class (yes-etc) : ")=="yes":
+                            system("cls")
+                            
+                            new_class = input("New class : ")
+                            system("cls")
+
+                            if new_class=="":
+                                print("Error! new class is empty!!!")
+                            elif new_class not in ["a", "b", "c", "d"]:
+                                print("Error! new class is not in[a, b, c, d] !!!")
+
+                            else:
+                                flag = False
+
+                                print("done")
+                                student[6] = new_class
+                        else:
+                            system("cls")
+                            print("done")
+                            break  
+
+                    #endregion                     
+
+                    #region edit java score
+                        
+                    flag = True
+
+                    while flag:
+
+                        if input("do you want to edit this java score (yes-etc) : ")=="yes":
+                            system("cls")
+                            
+                            new_java_score = int(input("New java score : "))
+                            system("cls")
+
+                            if new_java_score=="":
+                                print("Error! new java score is empty!!!")
+                            elif new_java_score>100 or new_java_score<0:
+                                print("Error! new java score is bigger than 100 or smaller than 5!!!")
+                            else:
+                                flag = False
+
+                                print("done")
+                                student[9] = new_java_score
+                        else:
+                            system("cls")
+                            print("done")
+                            break  
+                        
+
+                    #endregion
+                        
+                    #region edit php score
+                        
+                    flag = True
+
+                    while flag:
+
+                        if input("do you want to edit this php score (yes-etc) : ")=="yes":
+                            system("cls")
+                            
+                            new_php_score = int(input("New php score : "))
+                            system("cls")
+
+                            if new_php_score=="":
+                                print("Error! new php score is empty!!!")
+                            elif new_php_score>100 or new_php_score<0:
+                                print("Error! new php score is bigger than 100 or smaller than 5!!!")
+                            else:
+                                flag = False
+
+                                print("done")
+                                student[8] = new_php_score
+                        else:
+                            system("cls")
+                            print("done")
+                            break  
+
+
+                    #endregion
+                        
+                    #region edit python score
+                        
+                    flag = True
+
+                    while flag:
+
+                        if input("do you want to edit this python score (yes-etc) : ")=="yes":
+                            system("cls")
+                            
+                            new_python_score = int(input("New python score : "))
+                            system("cls")
+
+                            if new_python_score=="":
+                                print("Error! new python score is empty!!!")
+                            elif new_python_score>100 or new_python_score<0:
+                                print("Error! new python score is bigger than 100 or smaller than 5!!!")
+                            else:
+                                flag = False
+
+                                print("done")
+                                student[7] = new_python_score
+                        else:
+                            system("cls")
+                            print("done")
+                            break  
+
+                    #endregion
+
+            elif selection == "2":
+
+                stdcode = input("student code : ")
+                system("cls")
+
+                print("ID\tname\tfamily\tgender\tage\tncode\tstudcode\tclass\tpython\tphp\tjava")
+                print("-----------------------------------------------------------------------------------------------------------")
+                
+                find_stdcode = None
+                count = 1
+                for student in student_list: 
+                    if student[5] == stdcode:
+                        print(count, *student, sep="\t")
+                        count += 1
+                        print("-----------------------------------------------------------------------------------------------------------")
+                       
+                        find_stdcod = stdcode
+               
+                    #region edit name
+                        
+                    flag = True
+
+                    while flag:
+
+                        if input("do you want to edit this name (yes-etc) : ")=="yes":
+                            system("cls")
+
+                            new_name = input("New name : ")
+                            system("cls")
+
+                            if new_name=="":
+                                print("Error! new name is empty!!!")
+                            else:
+                                flag = False
+
+                                print("done")
+                                student[0] = new_name
+                        else:
+                            system("cls")
+                            print("done")
+                            break  
+
+                    
+                    #endregion
+                        
+                    #region edit family
+                        
+                    flag = True
+
+                    while flag:
+
+                        if input("do you want to edit this family (yes-etc) : ")=="yes":
+                            system("cls")
+                            
+                            new_family = input("New family : ")
+                            system("cls")
+
+                            if new_family=="":
+                                print("Error! new family is empty!!!")
+                            else:
+                                flag = False
+
+                                print("done")
+                                student[1] = new_family
+                        else:
+                            system("cls")
+                            print("done")
+                            break  
+
+
+                    #endregion
+                        
+                    #region edit gender
+                        
+                    flag = True
+
+                    while flag:
+
+                        if input("do you want to edit this gender (yes-etc) : ")=="yes":
+                            system("cls")
+                                                        
+                            new_gender = input("New gender : ")
+                            system("cls")
+
+                            if new_gender=="":
+                                print("Error! new gender is empty!!!")
+                            elif new_gender not in ["male", "female", "other"]:
+                                print("Error! new gender is not chosen from male, female, other!!!")
+                            else:
+                                flag = False
+
+                                print("done")
+                                student[2] = new_gender
+                        else:
+                            system("cls")
+                            print("done")
+                            break  
+
+                    #endregion
+                        
+                    #region edit age
+                        
+                    flag = True
+
+                    while flag:
+
+                        if input("do you want to edit this age (yes-etc) : ")=="yes":
+                            system("cls")
+                            
+                            new_age = int(input("New age : "))
+                            system("cls")
+
+                            if new_age=="":
+                                print("Error! new age is empty!!!")
+                            elif new_age>120 or new_age<5:
+                                print("Error! new age is bigger than 120 and smaller than 5!!!")
+
+                            else:
+                                flag = False
+
+                                print("done")
+                                student[3] = new_age
+                        else:
+                            system("cls")
+                            print("done")
+                            break  
+
+                    #endregion
+
+                    #region edit national code
+                        
+                    flag = True
+
+                    while flag:
+
+                        if input("do you want to edit this national code (yes-etc) : ")=="yes":
+                            system("cls")
+                            
+                            new_ncode = input("New national code : ")
+                            system("cls")
+
+                            if new_ncode=="":
+                                print("Error! new national code is empty!!!")
+                            
+                            elif new_ncode==ncode:
+                                flag=False
+                                print("already exists")
+                            else:
+                                find_student = False
+
+                                for std in student_list:
+                                    if std[4]==new_ncode:
+                                        find_student=True
+
+                                if find_student:
+                                    print("error!!!", new_ncode, "exists")
+                                else:
+                                    flag = False
+
+                                    print("done")
+                                    student[4] = new_ncode
+                        else:
+                            system("cls")
+                            print("done")
+                            break  
+
+
+                    #endregion
+                        
+                    #region edit student code
+                        
+                    flag = True
+
+                    while flag:
+
+                        if input("do you want to edit this stdcode (yes-etc) : ")=="yes":
+                            system("cls")
+                            
+                            new_stdcode = input("New student code : ")
+                            system("cls")
+
+                            if new_stdcode=="":
+                                print("Error! new student code is empty!!!")
+                            
+                            elif new_stdcode==stdcode:
+                                flag=False
+                                print("already exists")
+                            else:
+                                find_student = False
+
+                                for std in student_list:
+                                    if std[5]==new_stdcode:
+                                        find_student=True
+
+                                if find_student:
+                                    print("error!!!", new_stdcode, "exists")
+                                else:
+                                    flag = False
+
+                                print("done")
+                                student[5] = new_stdcode
+
+                        else:
+                            system("cls")
+                            print("done")
+                            break  
+
+
+                    #endregion
+
+                    #region edit class
+                        
+                    flag = True
+
+                    while flag:
+
+                        if input("do you want to edit this class (yes-etc) : ")=="yes":
+                            system("cls")
+                            
+                            new_class = input("New class : ")
+                            system("cls")
+
+                            if new_class=="":
+                                print("Error! new class is empty!!!")
+                            elif new_class not in ["a", "b", "c", "d"]:
+                                print("Error! new class is not in[a, b, c, d] !!!")
+
+                            else:
+                                flag = False
+
+                                print("done")
+                                student[6] = new_class
+                        else:
+                            system("cls")
+                            print("done")
+                            break  
+
+
+                    #endregion                     
+
+                    #region edit java score
+                        
+                    flag = True
+
+                    while flag:
+
+                        if input("do you want to edit this java score (yes-etc) : ")=="yes":
+                            system("cls")
+                            
+                            new_java_score = int(input("New java score : "))
+                            system("cls")
+
+                            if new_java_score=="":
+                                print("Error! new java score is empty!!!")
+                            elif new_java_score>100 or new_java_score<0:
+                                print("Error! new java score is bigger than 100 or smaller than 5!!!")
+                            else:
+                                flag = False
+                                print("done")
+                                student[9] = new_java_score
+                        else:
+                            system("cls")
+                            print("done")
+                            break  
+
+                    #endregion
+                        
+                    #region edit php score
+                        
+                    flag = True
+
+                    while flag:
+
+                        if input("do you want to edit this php score (yes-etc) : ")=="yes":
+                            system("cls")
+                            
+                            new_php_score = int(input("New php score : "))
+                            system("cls")
+
+                            if new_php_score=="":
+                                print("Error! new php score is empty!!!")
+                            elif new_php_score>100 or new_php_score<0:
+                                print("Error! new php score is bigger than 100 or smaller than 5!!!")
+                            else:
+                                flag = False
+
+                                print("done")
+                                student[8] = new_php_score
+                        else:
+                            system("cls")
+                            print("done")
+                            break  
+
+
+                    #endregion
+                        
+                    #region edit python score
+                        
+                    flag = True
+
+                    while flag:
+
+                        if input("do you want to edit this python score (yes-etc) : ")=="yes":
+                            system("cls")
+                            
+                            new_python_score = int(input("New python score : "))
+                            system("cls")
+
+                            if new_python_score=="":
+                                print("Error! new python score is empty!!!")
+                            elif new_python_score>100 or new_python_score<0:
+                                print("Error! new python score is bigger than 100 or smaller than 5!!!")
+                            else:
+                                flag = False
+
+                                print("done")
+                                student[7] = new_python_score
+                        else:
+                            system("cls")
+                            print("done")
+                            break  
+
+                    #endregion
+            elif selection == "3":
+                temp = False
+    
+
+    elif menu=="5":
+
+        temp=True
+
+        while temp:
+
+            search_menu = input("\n\n1.Name 2.Family 3.Gender 4.Age 5.Ncode 6.Stdcode 7.Class 8.Exit")
+            system("cls")
+
+            if search_menu=="1":
+                val = input("Name : ")
+                system("cls")
+
+
+                print("ID\tName\tFamily\tGender\tAge\tNcode\tStdcode\tClass\tPython\tPhp\tJava")
+                print("_________________________________________________________________________________________________________")
+                count = 1
+                for student in student_list:
+                    if student[0]==val:
+                        print(count, *student, sep="\t")
+                        count += 1
+                print("_________________________________________________________________________________________________________")
+
+            elif search_menu=="2":
+                val = input("Family : ")
+                system("cls")
+
+
+                print("ID\tName\tFamily\tGender\tAge\tNcode\tStdcode\tClass\tPython\tPhp\tJava")
+                print("_________________________________________________________________________________________________________")
+                count = 1
+                for student in student_list:
+                    if student[1]==val:
+                        print(count, *student, sep="\t")
+                        count += 1
+                print("_________________________________________________________________________________________________________")
+
+            elif search_menu=="3":
+                val = input("Gender : ")
+                system("cls")
+
+
+                print("ID\tName\tFamily\tGender\tAge\tNcode\tStdcode\tClass\tPython\tPhp\tJava")
+                print("_________________________________________________________________________________________________________")
+                count = 1
+                for student in student_list:
+                    if student[2]==val:
+                        print(count, *student, sep="\t")
+                        count += 1
+                print("_________________________________________________________________________________________________________")
+            
+            elif search_menu=="4":
+                val = input("Age : ")
+                system("cls")
+
+
+                print("ID\tName\tFamily\tGender\tAge\tNcode\tStdcode\tClass\tPython\tPhp\tJava")
+                print("_________________________________________________________________________________________________________")
+                count = 1
+                for student in student_list:
+                    if student[3]==val:
+                        print(count, *student, sep="\t")
+                        count += 1
+                print("_________________________________________________________________________________________________________")
+        
+            elif search_menu=="5":
+                val = input("Ncode : ")
+                system("cls")
+
+
+                print("ID\tName\tFamily\tGender\tAge\tNcode\tStdcode\tClass\tPython\tPhp\tJava")
+                print("_________________________________________________________________________________________________________")
+                count = 1
+                for student in student_list:
+                    if student[4]==val:
+                        print(count, *student, sep="\t")
+                        count += 1
+                print("_________________________________________________________________________________________________________")
+
+            elif search_menu=="6":
+                val = input("Std code : ")
+                system("cls")
+
+
+                print("ID\tName\tFamily\tGender\tAge\tNcode\tStdcode\tClass\tPython\tPhp\tJava")
+                print("_________________________________________________________________________________________________________")
+                count = 1
+                for student in student_list:
+                    if student[5]==val:
+                        print(count, *student, sep="\t")
+                        count += 1
+                print("_________________________________________________________________________________________________________")
+
+            elif search_menu=="7":
+                val = input("Class : ")
+                system("cls")
+
+
+                print("ID\tName\tFamily\tGender\tAge\tNcode\tStdcode\tClass\tPython\tPhp\tJava")
+                print("_________________________________________________________________________________________________________")
+                count = 1
+                for student in student_list:
+                    if student[6]==val:
+                        print(count, *student, sep="\t")
+                        count += 1
+                print("_________________________________________________________________________________________________________")
+
+            elif search_menu=="8":
+                temp=False
+            
+            else:
+                print("error")
+
+    elif menu=="6":
+        #region best java
+        max_java_score = -1
+        max_java_person =[]
+
+        for student in student_list:
+
+            if student[7]>max_java_score:
+                max_java_score = student[7]
+
+        for student in student_list:
+
+            if student[7]==max_java_score:
+                max_java_person.append(student[0])
+                max_java_person.append("---")
+                max_java_person.append(student[1])
+                max_java_person.append("   ")
+            student_name = "".join(max_java_person)
+
+
+        print("max score in java : ", student_name, max_java_score)
+        #endregion
+
+    elif menu=="7":
+        #region best python
+        max_python_score = -1
+        max_python_person =[]
+
+        for student in student_list:
+
+            if student[8]>max_python_score:
+                max_python_score = student[8]
+
+        for student in student_list:
+
+            if student[8]==max_python_score:
+                max_python_person.append(student[0])
+                max_python_person.append("---")
+                max_python_person.append(student[1])
+                max_python_person.append("   ")
+            student_name = "".join(max_python_person)
+
+
+        print("max score in python : ", student_name,  max_python_score)
+        #endregion
+
+    elif menu=="8":
+        #region best php
+        max_php_score = -1
+        max_php_person =[]
+
+        for student in student_list:
+
+            if student[9]>max_php_score:
+                max_php_score = student[9]
+
+        for student in student_list:
+
+            if student[9]==max_php_score:
+                max_php_person.append(student[0])
+                max_php_person.append("---")
+                max_php_person.append(student[1])
+                max_php_person.append("   ")
+            student_name = "".join(max_php_person)
+
+
+        print("max score in php : ", student_name, max_php_score)
+        #endregion
+
+    elif menu=="9":
+        #region best avg
+        max_avg = -1
+        max_avg_person = []
+        
+        for student in student_list:
+            student_avg = (student[7] + student[8] + student[9]) / 3
+            
+            if student_avg > max_avg:
+                max_avg = student_avg
+                
+        for student in student_list:
+            student_avg = (student[7] + student[8] + student[9]) / 3
+            
+            if student_avg == max_avg:
+                max_avg_person.append(student[0])
+                max_avg_person.append(student[1])
+                max_avg_person.append(max_avg)
+
+        print("max avg : ", max_avg_person)
+        #endregion
+    
+
+    else:
+        continue_ = False
